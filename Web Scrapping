@@ -1,0 +1,60 @@
+#Bibliotecas utilizadas
+import requests
+from bs4 import BeautifulSoup
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service as ChromeService
+from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.common.by import By
+import time
+from tqdm import tqdm
+
+#Programa Principal
+def auto_scrap3_mercado_completo():
+    fale = input('Digite o produto que deseja : ')
+    url = 'https://lista.mercadolivre.com.br/'
+    url_m = 'https://www.mercadolivre.com.br/'
+    # Automatização
+    driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
+    driver.get(url_m)
+    driver.maximize_window()
+    driver.find_element(By.XPATH, '/html/body/div[2]/div[1]/div[2]/button[1]').click()
+    driver.find_element(By.XPATH, '/html/body/header/div/form/input').click()
+    driver.find_element(By.XPATH, '/html/body/header/div/form/input').send_keys(fale)
+    pyautogui.press('enter')
+    # web scrapping
+    response = requests.get(url + fale)
+    site = BeautifulSoup(response.text, 'html.parser')
+    celular = site.findAll('div', attrs={'class': 'ui-search-result__content-wrapper'})
+    time.sleep(2)
+    driver.close()
+    time.sleep(1)
+    print("")
+    print("")
+    qtd = []
+    #pegar Quantidade de produto
+    qtd_produto = site.find('span', attrs={'class': 'ui-search-search-result__quantity-results'})
+
+    for i in tqdm(range(7)):
+        time.sleep(1)
+    for celulares in celular:
+        price = celulares.find('span', attrs={'class': 'price-tag-amount'})
+        titulo = (celulares.find('a', attrs={'class': 'ui-search-item__group__element ui-search-link'}))
+
+        if titulo:
+            print(titulo.text)
+            print(price.text)
+            qtd.append(titulo.text)
+            print(qtd.__len__())
+        else:
+            subititulo = (celulares.find('h2', attrs={'class': 'ui-search-item__title ui-search-item__group__element'}))
+            print(subititulo.text)
+            print(price.text)
+            qtd.append(subititulo.text)
+            print(qtd.__len__())
+
+    print(" ")
+    print(f'\033[1;31m{qtd_produto.text}')
+    print(f'\033[1;32mProdutos extraidos : {qtd.__len__()}')
+
+    time.sleep(1999999)
+#web scrapping cotacao
