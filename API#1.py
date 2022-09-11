@@ -1,0 +1,50 @@
+import requests
+
+from tkinter import *
+
+def window():
+
+    root = Tk()
+    root.title("Endereços")
+    root.geometry("350x130")
+    root.resizable(False, False)
+
+    def Enviar():
+        try:
+            loca_cep = requests.get(f"https://cep.awesomeapi.com.br/json/{entrada_de_dados.get()}")
+
+            entrada_de_dados.delete(0, END)
+
+            loca_cep = loca_cep.json()
+
+            rua = loca_cep["address"]
+
+            bairro = loca_cep["district"]
+
+            print(f"\033[1;32m{rua}")
+
+            print(f"\033[1;32m{bairro}")
+
+            print("-------------------------")
+        except Exception as erro:
+            print("\033[1;31mOcorreu um problema ,Tente Denovo agora com 8 numeros!")
+
+    titulo = Label(root, text="Acesse seu Endereço", height=20)
+
+    titulo.place(x=100, y=-129)
+
+    label1 = Label(root, text="CEP")
+
+    label1.place(x=80, y=48)
+
+    entrada_de_dados = Entry()
+
+    entrada_de_dados.place(x=113, y=50, width=100)
+
+    redmi = Button(root, text="Pesquisar", command=Enviar)
+
+    redmi.place(x=220, y=46)
+
+
+    root.mainloop()
+window()
