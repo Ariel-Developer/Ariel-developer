@@ -1,14 +1,16 @@
+#Bibliotecas
 import requests
-
 from tkinter import *
 
-def window():
 
+def window():
+    #Interface Designer
     root = Tk()
     root.title("Endereços")
     root.geometry("350x130")
     root.resizable(False, False)
-
+      
+     #Função procurar o CEP
     def Enviar():
         try:
             loca_cep = requests.get(f"https://cep.awesomeapi.com.br/json/{entrada_de_dados.get()}")
@@ -28,7 +30,8 @@ def window():
             print("-------------------------")
         except Exception as erro:
             print("\033[1;31mOcorreu um problema ,Tente Denovo agora com 8 numeros!")
-
+            
+    #Titulos,texto, inputs e Butões utilizado na interface
     titulo = Label(root, text="Acesse seu Endereço", height=20)
 
     titulo.place(x=100, y=-129)
