@@ -22,7 +22,7 @@ print(loja_media)
 
 
 corpo_email = f"""
-  <p>Olá Ariel</p>
+  <p>Olá nome</p>
   <p>Faturamento</p>
     {loja.to_html(formatters={'Valor': "R${:,.2f}".format})}
   <p>Quantidade vendida</p>
@@ -32,9 +32,9 @@ corpo_email = f"""
   """
 msg = email.message.Message()
 msg["Subject"] = "Planilha"
-msg["From"] = "arielleo2005@gmail.com"
-msg["To"] = "arielleo2005@gmail.com"
-password = "zcfqerlqwptircbn"
+msg["From"] = "Email"
+msg["To"] = "Email"
+password = "zcfasniendla"
 msg.add_header("Content-Type", "text/html")
 msg.set_payload(corpo_email)
 
