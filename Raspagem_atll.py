@@ -54,8 +54,8 @@ class raspagem:
            """
         msg = email.message.Message()
         msg["Subject"] = "Dados coletados"
-        msg["From"] = "arielleo2005@gmail.com"
-        msg["To"] = "arielleo2005@gmail.com"
+        msg["From"] = "{self.email_usuario}"
+        msg["To"] = "Pessoa"
         password = "zcfqerlqwptircbn"
         msg.add_header("Content-Type", "text/html")
         msg.set_payload(corpo_email)
