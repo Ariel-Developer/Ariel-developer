@@ -1,0 +1,43 @@
+import tkinter as Tk
+from tkinter import *
+from bs4 import BeautifulSoup
+import requests
+import pandas as pd
+class sys_bot:
+    def __init__(self):
+        self.Intro()
+
+    def navegador(self):
+        self.response = requests.get("https://lista.mercadolivre.com.br/celulares#D[A:Celulares]")
+        self.site = BeautifulSoup(self.response.text, "html.parser")
+        self.aba_celulares = self.site.findAll("div", class_="ui-search-result__wrapper shops__result-wrapper")
+        self.lista_titulo = []
+        self.lista_preco = []
+
+        for celular in self.aba_celulares:
+            self.titulo = celular.find("h2", class_='ui-search-item__title shops__item-title').get_text()
+            self.lista_titulo.append(self.titulo)
+            self.preco = celular.find("span", class_="price-tag-amount").get_text()
+            self.lista_preco.append(self.preco)
+        self.dic = {"Modelo": self.lista_titulo, "Preço": self.lista_preco}
+
+        df = pd.DataFrame(self.dic)
+        print(df)
+    def Intro(self):
+        self.intro = Tk()
+        self.intro.title("Sistema coletor")
+        self.intro.geometry("400x400")
+        self.intro.resizable(False, False)
+
+        self.background_imagem = PhotoImage(file='Mercado Livre.png')
+        self.background_intro = Label(image=self.background_imagem)
+        self.background_intro.pack()
+
+        self.img_Button_Cellphones = PhotoImage(file="Celulares.png")
+        self.Button_Cellphones = Button(image=self.img_Button_Cellphones, bg='white', command=self.navegador)
+        self.Button_Cellphones.place(x=10, y=150)
+
+        self.intro.mainloop()
+
+
+abre = sys_bot()
