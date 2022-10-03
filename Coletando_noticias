@@ -7,6 +7,7 @@ import time
 import requests
 from tqdm import tqdm
 from bs4 import BeautifulSoup
+
 #Entrando No G1
 driver = Service(ChromeDriverManager().install())
 driver = webdriver.Chrome(service=driver)
