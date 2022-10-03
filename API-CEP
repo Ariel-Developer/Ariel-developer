@@ -2,6 +2,7 @@
 import requests
 from tkinter import *
 
+#Criando interface
 
 def window():
     #Interface Designer
@@ -31,7 +32,9 @@ def window():
         except Exception as erro:
             print("\033[1;31mOcorreu um problema ,Tente Denovo agora com 8 numeros!")
             
+            
     #Titulos,texto, inputs e Butões utilizado na interface
+    
     titulo = Label(root, text="Acesse seu Endereço", height=20)
 
     titulo.place(x=100, y=-129)
