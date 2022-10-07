@@ -11,6 +11,8 @@ def qrcode1(event):
 
 root = Tk()
 root.geometry("300x100")
+co = Label(root, text='Coloque o Link aqui')
+co.place(x=50, y=25)
 entry = Entry()
 entry.place(x=50, y=50, width=180)
 entry.bind("<Return>", qrcode1)
