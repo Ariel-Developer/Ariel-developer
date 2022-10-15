@@ -3,32 +3,10 @@ import smtplib
 import email.message
 
 
-tabela = pd.read_excel("Teste Excel.xlsx")
-
-print(tabela)
-
-#faturamento da loja
-loja = (tabela.groupby("Produto")["Valor"].sum()).to_frame()
-print(loja)
-
-#quantidades de produtos vendidods na loja
-qnt_produto = (tabela["Produto"].value_counts()).to_frame()
-print(qnt_produto)
-
-
-#media de cada produto
-loja_media = (tabela.groupby("Produto")["Valor"].mean()).to_frame()
-print(loja_media)
-
-
 corpo_email = f"""
   <p>Olá nome</p>
   <p>Faturamento</p>
-    {loja.to_html(formatters={'Valor': "R${:,.2f}".format})}
-  <p>Quantidade vendida</p>
-    {qnt_produto.to_html()}
-  <p>Média de Preço</p>
-    {loja_media.to_html(formatters={'Valor': "R${:,.2f}".format})}
+ 
   """
 msg = email.message.Message()
 msg["Subject"] = "Planilha"
