@@ -1,0 +1,424 @@
+# interface de login com codição
+import tkinter
+from tkinter import *
+from tkinter import messagebox
+import re
+import smtplib
+import email.message
+from random import randint
+class login_4:
+    def __init__(self):
+        self.sign_in_main()
+    def sign_in_main(self):
+        def click_email_sign(event):
+            self.email_entry.delete(0, END)
+        def click_senha_sign(event):
+            self.senha_entry.delete(0, END)
+            self.senha_entry.configure(width=25, font="Helveltica 15 bold", show="*")
+        def sign_in(event):
+            def log_in():
+                def verifi(event):
+                    global sistema
+                    def log_ds(event):
+                        self.email_entry_.delete(0, END)
+                    def log_de(event):
+                        self.senha_entry_.delete(0, END)
+                    def sistema():
+                        self.log_main.destroy()
+                        root = Tk()
+                        root.geometry("480x340")
+                        root.configure(bg="yellow")
+                        root.mainloop()
+
+                    if self.email_entry_.get() in self.lista_entrys and self.senha_entry_.get() in self.lista_senha:
+                        print(f"{self.email_entry_.get()}-\033[1;92mEsta na lista\033[m")
+                        self.email_entry_.delete(0, END)
+                        sistema()
+                    elif self.email_entry_.get() == "":
+                        self.senha_entry_.delete(0, END)
+                        self.email_entry_.insert(0, "Insira o seu email")
+                        self.email_entry_.bind("<Button-1>", log_ds)
+                    elif self.senha_entry_.get() == "":
+                        self.email_entry_.delete(0, END)
+                        self.senha_entry_.configure(show="", font="Helveltica 10 bold", width=39)
+                        self.senha_entry_.insert(0, "Insira a sua senha")
+                        self.senha_entry_.bind("<Button-1>", log_de)
+                    else:
+                        print(f"{self.email_entry_.get()}-\033[1;91mNao esta na lista\033[m")
+                        self.email_entry_.delete(0, END)
+                        self.senha_entry_.delete(0, END)
+                self.main.geometry("1x1")
+                self.log_main = tkinter.Toplevel()
+                self.log_main.title("Login")
+                self.log_main.geometry("480x340")
+                self.log_main.iconbitmap("Login-main.ico")
+                self.log_main.resizable(False, False)
+                bg_main_pho = PhotoImage(file="Cadastrar-se (1).png")
+                self.bg_main = Label(self.log_main, image=bg_main_pho).pack()
+                def ds(event):
+                    self.email_entry_.delete(0, END)
+                def de(event):
+                    self.senha_entry_.delete(0, END)
+                    self.senha_entry_.configure(show="*", font="Helveltica 15", width=25)
+                self.email_entry_ = Entry(self.log_main, width=39, font="Helveltica 10 bold")
+                self.email_entry_.place(x=100, y=130, height=23)
+                self.email_entry_.insert(0, " E-mail")
+
+                self.email_entry_.bind("<Button-1>", ds)
+                self.email_entry_.bind("<Return>", verifi)
+
+                self.senha_entry_ = Entry(self.log_main, width=25, font="Helveltica 15 bold", show="*")
+                self.senha_entry_.place(x=100, y=180, height=23)
+                self.senha_entry_.insert(0, " Senha")
+                self.senha_entry_.configure(show="", width=39, font="Helveltica 10 bold")
+                self.senha_entry_.bind("<Button-1>", de)
+                self.senha_entry_.bind("<Return>", verifi)
+
+                self.log_main.mainloop()
+            def verificando_email():
+                self.verificando = re.search(r'[a-zA-Z0-9_-]+@[a-zA-Z0-9]+\.[a-zA-Z]{1,3}$', self.email_entry.get())
+                if self.verificando:
+                    log_in()
+                else:
+                    messagebox.showerror(title="Wrong Email", message="Digite o seu email corretamente")
+                    self.email_entry.delete(0, END)
+            if self.email_entry.get() == "" and self.senha_entry.get() == "":
+                messagebox.showerror(title="ERROR", message="Você não inseriu nenhuma informação")
+                self.email_entry.insert(0, "Insira o seu Email")
+                self.senha_entry.configure(show="", width=39, font="Helveltica 10 bold")
+                self.senha_entry.insert(0, "Insira a Senha")
+            elif self.email_entry.get() == "":
+                self.email_entry.insert(0, "Insira o seu Email")
+
+            elif self.senha_entry.get() == "":
+                self.senha_entry.configure(show="", width=39, font="Helveltica 10 bold")
+                self.senha_entry.insert(0, "Insira a Senha")
+            else:
+                print(self.email_entry.get())
+                print(self.senha_entry.get())
+                self.lista_entrys.append(self.email_entry.get())
+                self.lista_senha.append(self.senha_entry.get())
+                verificando_email()
+
+        def ajuda_grow(event):
+            self.perdeu_conta.configure(width=7, fg="black")
+        def ajuda_low(event):
+            self.perdeu_conta.configure(width=5, fg="black")
+        def ajuda_click(event):
+            def back_help(event):
+                self.menu_pho.place(x=1111, y=1111)
+                self.ajuda_menu.place(x=1111, y=1111)
+                self.forget_password.place(x=1111, y=1111)
+                self.perdeu_conta.place(x=0, y=0)
+            def lg(event):
+                self.ajuda_menu.configure(fg="blue")
+            def lg_out(event):
+                self.ajuda_menu.configure(fg="black")
+            def fg_pas_color(event):
+                self.forget_password.configure(fg="blue", bg="#BD1010")
+            def fg_pass_out_color(event):
+                self.forget_password.configure(fg="black", bg="Red")
+            def esqueci_senha(event):
+                self.main.geometry("1x1")
+                def verificar_email_to_enviar(event):
+                    def enviar_senhanova_email_CODE():
+                        def codi_senha_nova():
+                            def aste(event):
+                                self.verifica_1.delete(0, END)
+                                self.verifica_1.configure(fg="black")
+                                self.verifica_1.place(x=150, y=157)
+                            def aste2(event):
+                                self.verifica_2.delete(0, END)
+                                self.verifica_2.configure(fg="black")
+                                self.verifica_2.place(x=198, y=157)
+                            def aste3(event):
+                                self.verifica_3.delete(0, END)
+                                self.verifica_3.configure(fg="black")
+                                self.verifica_3.place(x=248, y=157)
+                            def aste4(event):
+                                self.verifica_4.delete(0, END)
+                                self.verifica_4.configure(fg="black")
+                                self.verifica_4.place(x=295, y=157)
+                            def verifica_2x(event):
+                                def disa(event):
+                                    self.verifica_1.configure(state=NORMAL)
+                                    self.verifica_1.delete(0, END)
+                                self.verifica_1.configure(state=DISABLED, bg="white")
+                                self.verifica_1.bind("<Button-1>", disa)
+                            def verifica_3x(event):
+                                def disa2(event):
+                                    self.verifica_2.configure(state=NORMAL)
+                                    self.verifica_2.delete(0, END)
+                                self.verifica_2.configure(state=DISABLED, bg="white")
+                                self.verifica_2.bind("<Button-1>", disa2)
+                            def verifica_4x(event):
+                                def disa2(event):
+                                    self.verifica_3.configure(state=NORMAL)
+                                    self.verifica_3.delete(0, END)
+                                self.verifica_3.configure(state=DISABLED, bg="white")
+                                self.verifica_3.bind("<Button-1>", disa2)
+                            def verifica_5x(event):
+                                def disa2(event):
+                                    self.verifica_4.configure(state=NORMAL)
+                                    self.verifica_4.delete(0, END)
+                                def criar_senha_nova(event):
+                                    def aste(event):
+                                        self.verifica_1.delete(0, END)
+                                        self.verifica_1.configure(fg="black")
+                                        self.verifica_1.place(x=150, y=157)
+
+                                    def aste2(event):
+                                        self.verifica_2.delete(0, END)
+                                        self.verifica_2.configure(fg="black")
+                                        self.verifica_2.place(x=198, y=157)
+
+                                    def aste3(event):
+                                        self.verifica_3.delete(0, END)
+                                        self.verifica_3.configure(fg="black")
+                                        self.verifica_3.place(x=248, y=157)
+
+                                    def aste4(event):
+                                        self.verifica_4.delete(0, END)
+                                        self.verifica_4.configure(fg="black")
+                                        self.verifica_4.place(x=295, y=157)
+
+                                    def verifica_2x(event):
+                                        def disa(event):
+                                            self.verifica_1.configure(state=NORMAL)
+                                            self.verifica_1.delete(0, END)
+
+                                        self.verifica_1.configure(state=DISABLED, bg="white")
+                                        self.verifica_1.bind("<Button-1>", disa)
+
+                                    def verifica_3x(event):
+                                        def disa2(event):
+                                            self.verifica_2.configure(state=NORMAL)
+                                            self.verifica_2.delete(0, END)
+
+                                        self.verifica_2.configure(state=DISABLED, bg="white")
+                                        self.verifica_2.bind("<Button-1>", disa2)
+
+                                    def verifica_4x(event):
+                                        def disa2(event):
+                                            self.verifica_3.configure(state=NORMAL)
+                                            self.verifica_3.delete(0, END)
+
+                                        self.verifica_3.configure(state=DISABLED, bg="white")
+                                        self.verifica_3.bind("<Button-1>", disa2)
+
+                                    def verifica_5x(event):
+                                        def disa2(event):
+                                            self.verifica_4.configure(state=NORMAL)
+                                            self.verifica_4.delete(0, END)
+
+                                        def criar_senha_nova():
+                                            def senha_nova_criando_Offical():
+                                                def verificar_senha_nova(event):
+                                                    if self.entry_senha_nova.get().__len__() < 12:
+                                                        messagebox.showerror(title="Erro",
+                                                                             message="Sua senha deve conter pelo menos 8 caracterés")
+                                                        self.entry_senha_nova.delete(0, END)
+                                                    elif self.entry_senha_nova.get().__len__() > 20:
+                                                        messagebox.showerror(title="Erro",
+                                                                             message="Sua senha deve contar menos que 30 caracteés")
+                                                        self.entry_senha_nova.delete(0, END)
+                                                    else:
+                                                        print("Senha Boa!")
+
+                                                self.digite_codigo.geometry("0x0")
+                                                self.senha_nova = tkinter.Toplevel()
+                                                self.senha_nova.geometry("480x340")
+                                                self.senha_nova.title("Senha nova")
+                                                self.senha_nova.resizable(False, False)
+                                                bg_senha_nova = PhotoImage(file="Digite uma Senha Nova.png")
+                                                self.senha_nova_bg = Label(self.senha_nova, image=bg_senha_nova)
+                                                self.senha_nova_bg.pack()
+                                                self.entry_senha_nova = Entry(self.senha_nova, border=0,
+                                                                         font="Helveltica 13 bold")
+                                                self.entry_senha_nova.place(x=90, y=178, height=26, width=270)
+                                                self.entry_senha_nova.bind("<Return>", verificar_senha_nova)
+
+                                                self.senha_nova.mainloop()
+
+                                            self.lista_guardar_cd_verifica = [1, 1234, 4321]
+                                            self.valor_codigo = randint(1000, 9999)
+                                            self.lista_guardar_cd_verifica.append(self.valor_codigo)
+                                            print(self.lista_guardar_cd_verifica)
+                                            while True:
+                                                response = int(input("Digite o codigo aqui: "))
+                                                if response in self.lista_guardar_cd_verifica:
+                                                    print(f"O Codigo :{response} Está na lista")
+                                                    senha_nova_criando_Offical()
+                                                else:
+                                                    print(f"O codigo :{response} não está na lista")
+
+                                        self.verifica_4.configure(state=DISABLED, bg="white")
+                                        self.verifica_3.configure(state=DISABLED, bg="white")
+                                        self.verifica_2.configure(state=DISABLED, bg="white")
+                                        self.verifica_1.configure(state=DISABLED, bg="white")
+                                        self.verifica_4.bind("<Button-1>", disa2)
+                                        criar_senha_nova()
+
+                                    self.digite_codigo = tkinter.Toplevel()
+                                    self.digite_codigo.geometry("480x340")
+                                    self.digite_codigo.resizable(False, False)
+                                    bg = PhotoImage(file="Digite o codigo de verificação.png")
+                                    l = Label(self.digite_codigo, image=bg)
+                                    l.pack()
+
+                                    self.verifica_1 = Entry(self.digite_codigo, border=0, width=1, font="Helveltica 30 bold",
+                                                       fg="#545454")
+                                    self.verifica_1.place(x=155, y=157, height=35)
+                                    self.verifica_1.insert(0, "*")
+                                    self.verifica_1.bind("<Button-1>", aste)
+                                    self.verifica_1.bind("<Return>", verifica_2x)
+
+                                    self.verifica_2 = Entry(self.digite_codigo, border=0, width=1, font="Helveltica 30 bold",
+                                                       fg="#545454")
+                                    self.verifica_2.place(x=203, y=157, height=35)
+                                    self.verifica_2.insert(0, "*")
+                                    self.verifica_2.bind("<Button-1>", aste2)
+                                    self.verifica_2.bind("<Return>", verifica_3x)
+
+                                    self.verifica_3 = Entry(self.digite_codigo, border=0, width=1, font="Helveltica 30 bold",
+                                                       fg="#545454")
+                                    self.verifica_3.place(x=250, y=157, height=35)
+                                    self.verifica_3.insert(0, "*")
+                                    self.verifica_3.bind("<Button-1>", aste3)
+                                    self.verifica_3.bind("<Return>", verifica_4x)
+
+                                    self.verifica_4 = Entry(self.digite_codigo, border=0, width=1, font="Helveltica 30 bold",
+                                                       fg="#545454")
+                                    self.verifica_4.place(x=298, y=157, height=35)
+                                    self.verifica_4.insert(0, "*")
+                                    self.verifica_4.bind("<Button-1>", aste4)
+                                    self.verifica_4.bind("<Return>", verifica_5x)
+
+                                    self.digite_codigo.mainloop()
+                                self.verifica_4.configure(state=DISABLED, bg="white")
+                                self.verifica_3.configure(state=DISABLED, bg="white")
+                                self.verifica_2.configure(state=DISABLED, bg="white")
+                                self.verifica_1.configure(state=DISABLED, bg="white")
+                                self.verifica_4.bind("<Button-1>", disa2)
+                                self.verifica_4.bind("<Return>", criar_senha_nova)
+
+                            self.verificando = tkinter.Toplevel()
+                            self.verificando.geometry("480x340")
+                            self.verificando.resizable(False, False)
+                            bg = PhotoImage(file="Digite o codigo de verificação.png")
+                            l = Label(self.verificando, image=bg)
+                            l.pack()
+
+                            self.verifica_1 = Entry(self, border=0, width=1, font="Helveltica 30 bold", fg="#545454")
+                            self.verifica_1.place(x=155, y=157, height=35)
+                            self.verifica_1.insert(0, "*")
+                            self.verifica_1.bind("<Button-1>", aste)
+                            self.verifica_1.bind("<Return>", verifica_2x)
+
+                            self.verifica_2 = Entry(self, border=0, width=1, font="Helveltica 30 bold", fg="#545454")
+                            self.verifica_2.place(x=203, y=157, height=35)
+                            self.verifica_2.insert(0, "*")
+                            self.verifica_2.bind("<Button-1>", aste2)
+                            self.verifica_2.bind("<Return>", verifica_3x)
+
+                            self.verifica_3 = Entry(self, border=0, width=1, font="Helveltica 30 bold", fg="#545454")
+                            self.verifica_3.place(x=250, y=157, height=35)
+                            self.verifica_3.insert(0, "*")
+                            self.verifica_3.bind("<Button-1>", aste3)
+                            self.verifica_3.bind("<Return>", verifica_4x)
+
+                            self.verifica_4 = Entry(self, border=0, width=1, font="Helveltica 30 bold", fg="#545454")
+                            self.verifica_4.place(x=298, y=157, height=35)
+                            self.verifica_4.insert(0, "*")
+                            self.verifica_4.bind("<Button-1>", aste4)
+                            self.verifica_4.bind("<Return>", verifica_5x)
+
+
+                            self.verificando.mainloop()
+                        xl1xeax = randint(1000, 9999)
+                        corpo_email = f"""
+                                    <h1>Recuperando a conta</h2>
+                                    <p>Aqui está seu codigo de verificação: [{xl1xeax}] </p>
+                                    
+                                  """
+                        msg = email.message.Message()
+                        msg["Subject"] = "Recuperar conta"
+                        msg["From"] = "Arielleo2005@gmail.com"
+                        msg["To"] = self.forg_pas_IG_entry_email.get()
+                        password = "ynxrhdbeobgfzhxt"
+                        msg.add_header("Content-Type", "text/html")
+                        msg.set_payload(corpo_email)
+                        s = smtplib.SMTP("smtp.gmail.com: 587")
+                        s.starttls()
+                        s.login(msg["from"], password)
+                        s.sendmail(msg["From"], [msg["To"]], msg.as_string().encode("utf-8"))
+                        print("Enviado")
+                        codi_senha_nova()
+
+                    self.verificar_email_enviar = re.search(r'[a-zA-Z0-9_-]+@[a-zA-Z0-9]+\.[a-zA-Z]{1,3}$', self.forg_pas_IG_entry_email.get())
+                    if self.verificar_email_enviar:
+                        enviar_senhanova_email_CODE()
+                    else:
+                        messagebox.showerror(title="E-mail Incorreto", message="Verifique se Digitou o Email corretamente")
+                        self.forg_pas_IG_entry_email.delete(0, END)
+                self.forgt = tkinter.Toplevel()
+                self.forgt.title("Recuperar conta")
+                self.forgt.geometry("480x340")
+                self.forgt.resizable(False, False)
+                self.forgt.iconbitmap("Login-main.ico")
+                forg_pho = PhotoImage(file="Recuperar.png")
+                self.recuperando_bg = Label(self.forgt, image=forg_pho)
+                self.recuperando_bg.pack()
+                self.forg_pas_IG_entry_email = Entry(self.forgt, border=0, font="Helveltica 13 bold")
+                self.forg_pas_IG_entry_email.place(x=89, y=178, height=25, width=270)
+                self.forg_pas_IG_entry_email.bind("<Return>", verificar_email_to_enviar)
+                self.forgt.mainloop()
+
+            self.perdeu_conta.place(x=1999, y=35)
+            self.menu_pho.place(x=0, y=0, width=126)
+            self.ajuda_menu = Label(self.main, text="Menu", fg="black", bg="#BD1010", font="Helveltica 11 bold", width=14)
+            self.ajuda_menu.place(x=-6, y=0)
+            self.ajuda_menu.bind("<Button-1>", back_help)
+            self.ajuda_menu.bind("<Enter>", lg)
+            self.ajuda_menu.bind("<Leave>", lg_out)
+            self.forget_password = Label(self.main, text="Esqueci minha senha", bg="Red", font="Helveltica 8 bold", fg="black", width=17)
+            self.forget_password.bind("<Enter>", fg_pas_color)
+            self.forget_password.bind("<Leave>", fg_pass_out_color)
+            self.forget_password.bind("<Button-1>", esqueci_senha)
+            self.forget_password.place(x=0, y=40)
+
+        self.main = Tk()
+        self.main.title("Cadastrar")
+        self.main.geometry("480x340")
+        self.main.iconbitmap("Login-main.ico")
+        self.main.resizable(False, False)
+        bg_main_pho = PhotoImage(file="Cadastrar-se (1).png")
+        self.bg_main = Label(self.main, image=bg_main_pho).pack()
+
+
+
+        self.lista_senha = ["123"]
+        self.lista_entrys = ["arielleo2005@gmail.com", "j"]
+        self.email_entry = Entry(width=39, font="Helveltica 10 bold")
+        self.email_entry.place(x=100, y=130, height=23)
+        self.email_entry.insert(0, " E-mail")
+        self.email_entry.bind("<Button-1>", click_email_sign)
+        self.email_entry.bind("<Return>", sign_in)
+
+        self.senha_entry = Entry(width=39, font="Helveltica 10 bold")
+        self.senha_entry.place(x=100, y=180, height=23)
+        self.senha_entry.insert(0, "Senha")
+        self.senha_entry.bind("<Button-1>", click_senha_sign)
+        self.senha_entry.bind("<Return>", sign_in)
+
+        self.perdeu_conta = Label(self.main, text="Ajuda", font="Helveltica 8 bold", bg="Red", width=5)
+        self.perdeu_conta.place(x=-3, y=0)
+        self.perdeu_conta.bind("<Enter>", ajuda_grow)
+        self.perdeu_conta.bind("<Leave>", ajuda_low)
+        self.perdeu_conta.bind("<Button-1>", ajuda_click)
+        self.menu_pho = Label(self.main, bg="red", width=12, height=100)
+
+
+        self.main.mainloop()
+
+go = login_4()
