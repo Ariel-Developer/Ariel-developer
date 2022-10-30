@@ -8,8 +8,13 @@ servico = Service(ChromeDriverManager().install())
 driver = webdriver.Chrome(service=servico)
 driver.get("https://www.amazon.com.br/Livros/b?ie=UTF8&node=6740748011")
 driver.find_element(By.XPATH, '//*[@id="twotabsearchtextbox"]').click()
-driver.find_element(By.XPATH, '//*[@id="twotabsearchtextbox"]').send_keys("Slipknot")
+driver.find_element(By.XPATH, '//*[@id="twotabsearchtextbox"]').send_keys("Mercado")
 time.sleep(19)
+-----------------------------------------------------------------------------------------
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
+WebDriverWait(browser, 10).until(EC.presence_of_element_located((By.XPATH, '/html/body/div[4]/div/div[1]/div[6]/div/div[5]/div[1]/div[2]/div[4]/a')))
 
 
 
