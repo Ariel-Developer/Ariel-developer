@@ -1,6 +1,6 @@
 import pandas as pd
 import smtplib
-import email.message
+from email.message import EmailMessage
 
 
 corpo_email = f"""
@@ -8,7 +8,7 @@ corpo_email = f"""
   <p>Faturamento</p>
  
   """
-msg = email.message.Message()
+ msg = EmailMessage()
 msg["Subject"] = "Planilha"
 msg["From"] = "Email"
 msg["To"] = "Email"
