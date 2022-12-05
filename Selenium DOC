@@ -12,6 +12,10 @@ driver.find_element(By.XPATH, '//*[@id="twotabsearchtextbox"]').click()
 driver.find_element(By.XPATH, '//*[@id="twotabsearchtextbox"]').send_keys("Mercado")
 time.sleep(19)
 -----------------------------------------------------------------------------------------
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.by import By
+
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
