@@ -1,0 +1,32 @@
+def insta_posts():
+    l = instaloader.Instaloader()
+    l.login("Email", "Senha")
+    posts = instaloader.Profile.from_username(l.context, "username").get_posts()
+    since = datetime(2021, 1, 18)
+    until = datetime(2022, 11, 18)
+    for post in posts:
+        if (post.date >= since) and (post.date <= until):
+            print(post.date)
+            l.download_post(post, "insta-folder")
+---------------------------------------------------------------------------------------
+  Login = instaloader.Instaloader()
+    Login.login("email", "senha")
+    seguidores = instaloader.Profile.from_username(Login.context, "username").get_followers()
+    seguindo = instaloader.Profile.from_username(Login.context, 'username').get_followees()
+
+    num_seguidore = str(seguidores._data['count'])
+
+    print(num_seguidore)
+    print('Seguidores')
+    info_folowers = seguidores._data['edges']
+    info_seguindo = seguindo._data['edges']
+    for ele in info_folowers:
+        print(ele)
+        print("-" * 100)
+        print("\n")
+    print('Seguindo')
+    print(str(seguindo._data['count']))
+    for ele2 in info_seguindo:
+        print(ele2)
+        print("-" * 100)
+        print("\n")
